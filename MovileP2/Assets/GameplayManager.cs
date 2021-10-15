@@ -6,4 +6,9 @@ public class GameplayManager : MonoBehaviour
 {
     [SerializeField] int m_introTime;
 
+
+    private void Start()
+    {
+        JLogger.SendLog("Start Gameplay");
+    }
 }

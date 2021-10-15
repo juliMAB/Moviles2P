@@ -12,6 +12,6 @@ public class GoUp : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        rg2d.AddForce(Vector2.up);
+        rg2d.AddForce(Vector2.up* m_speed);
     }
 }
