@@ -9,6 +9,6 @@ public class GameplayManager : MonoBehaviour
 
     private void Start()
     {
-        JLogger.SendLog("Start Gameplay");
+        //JLogger.SendLog("Start Gameplay");
     }
 }
