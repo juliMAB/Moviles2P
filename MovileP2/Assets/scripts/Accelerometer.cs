@@ -8,6 +8,10 @@ public class Accelerometer : MonoBehaviour
     private Rigidbody rb;
     public bool test;
     public Vector3 v3;
+    [SerializeField]
+    private float smoothInputSpeed = .2f;
+    private Vector3 currentInput;
+    private Vector3 smoothInputVel;
     public enum CHANGER
     {
         MOVE,
@@ -35,7 +39,7 @@ public class Accelerometer : MonoBehaviour
                 break;
             case CHANGER.ROTE:
                 tilt *= 45;
-                
+                currentInput = Vector3.SmoothDamp(currentInput, tilt, ref smoothInputVel, smoothInputSpeed); 
                 //if (isFlat)
                     //tilt = Vector3.forward*90 + tilt;
                 
@@ -47,7 +51,7 @@ public class Accelerometer : MonoBehaviour
                 }
                 else
                 {
-                    rb.rotation = Quaternion.Lerp(Quaternion.Euler(-tilt.x, 0, 0), transform.rotation, 0.1f);
+                    rb.rotation = Quaternion.Lerp(Quaternion.Euler(-currentInput.x, 0, 0), transform.rotation, 0.1f);
                     //rb.AddTorque(new Vector3(-tilt.x, 0, 0), ForceMode.Force);
                     //transform.rotation = Quaternion.Lerp(Quaternion.Euler(-tilt.x, 0, 0), transform.rotation, 0.1f);
                     Debug.DrawRay(transform.position + Vector3.up, tilt, Color.cyan);
