@@ -48,6 +48,7 @@ namespace Assets.scripts
             if (index==8)
             {
                 AnimationPc.Play("Start1");
+                actualstate = states.game;
             }
         }
 

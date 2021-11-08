@@ -16,13 +16,4 @@ public class CubitosGoFront : MonoBehaviour
             item.AddForce(Vector3.left* speed, ForceMode.Impulse);
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //foreach (var item in cubitos)
-        //{
-        //    item.MovePosition(Vector3.left);
-        //}
-    }
 }

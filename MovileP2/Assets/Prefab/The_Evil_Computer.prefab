@@ -124,6 +124,36 @@ Transform:
   m_Father: {fileID: 7031892230686978901}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1081072885959111750
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4436724023563675860}
+  m_Layer: 0
+  m_Name: spawnR
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4436724023563675860
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1081072885959111750}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.13, y: 0, z: 0.509}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4658265435314418292}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1544443487907287420
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,7 +495,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.39999866, y: -0.7, z: 12.1387005}
   m_LocalScale: {x: 6.5469003, y: 6.019256, z: 22.976578}
-  m_Children: []
+  m_Children:
+  - {fileID: 7142098990009796372}
   m_Father: {fileID: 5462824752596203224}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -648,13 +679,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3378909826447340594}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.39999866, y: -0.7, z: 12.1387005}
+  m_LocalRotation: {x: -0, y: -0.25817993, z: -0, w: 0.9660969}
+  m_LocalPosition: {x: -0.6, y: -0.7, z: 10}
   m_LocalScale: {x: 5, y: 5, z: 20}
-  m_Children: []
+  m_Children:
+  - {fileID: 4436724023563675860}
   m_Father: {fileID: 5545607247350586863}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -29.924002, z: 0}
 --- !u!33 &1254540196482792018
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -715,6 +747,36 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &4244389228854619376
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7142098990009796372}
+  m_Layer: 0
+  m_Name: spawnL
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7142098990009796372
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4244389228854619376}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.05, y: 0, z: 0.517}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5265057279202021823}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5887621203885485403
 GameObject:
   m_ObjectHideFlags: 0
@@ -725,6 +787,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1615661918862574491}
   - component: {fileID: 1670223080364978658}
+  - component: {fileID: 50521613857858016}
   m_Layer: 0
   m_Name: The_Evil_Computer
   m_TagString: Untagged
@@ -769,6 +832,27 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &50521613857858016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5887621203885485403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4c5d6ce7591e754f944b1141786ab8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LRspawnPoint: {fileID: 1081072885959111750}
+  RRspawnPoint: {fileID: 4244389228854619376}
+  pool:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  rigidbodies: []
+  speed: 10
 --- !u!1 &7051447638764697897
 GameObject:
   m_ObjectHideFlags: 0
