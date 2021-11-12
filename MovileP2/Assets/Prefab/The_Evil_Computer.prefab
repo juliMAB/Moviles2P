@@ -804,7 +804,7 @@ Transform:
   m_GameObject: {fileID: 5887621203885485403}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 38.4, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 0.51508486}
   m_Children:
   - {fileID: 296037755000427782}
   - {fileID: 7031892230686978901}
@@ -844,15 +844,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4c5d6ce7591e754f944b1141786ab8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LRspawnPoint: {fileID: 1081072885959111750}
-  RRspawnPoint: {fileID: 4244389228854619376}
+  LRspawnPoint: {fileID: 4244389228854619376}
+  RRspawnPoint: {fileID: 1081072885959111750}
   pool:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   rigidbodies: []
-  speed: 10
+  speed: 30
 --- !u!1 &7051447638764697897
 GameObject:
   m_ObjectHideFlags: 0

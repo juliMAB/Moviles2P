@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TouchToDestroy : MonoBehaviour
 {
-    LayerMask layersToDesty;
+    [SerializeField] LayerMask layersToDesty;
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.layer == layersToDesty)

@@ -1,0 +1,10 @@
+﻿using Assets.scripts;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class GameManager : MonoBehaviourSingleton<GameManager>
+{
+    bool tutorial = true;
+    public bool Tutorial { get => tutorial; set => tutorial = value; }
+}
