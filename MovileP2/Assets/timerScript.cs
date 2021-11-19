@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 
 public class timerScript : MonoBehaviour
 {
-    [SerializeField] Text t_Time;
+    [SerializeField] TextMeshProUGUI t_Time;
 
     float t_TimeColor = 1;
     // Start is called before the first frame update

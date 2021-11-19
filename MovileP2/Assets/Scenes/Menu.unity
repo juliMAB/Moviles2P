@@ -1205,6 +1205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8581a297bd67d64fa28be5612063760, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pg: {fileID: 0}
 --- !u!4 &1687648100
 Transform:
   m_ObjectHideFlags: 0
@@ -1245,9 +1246,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1891170138}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c58f586812f0374487408741dc06115, type: 3}
+  m_Script: {fileID: 11500000, guid: eada7dcb1604501408ed97de26579cde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerScore: 0
 --- !u!4 &1891170140
 Transform:
   m_ObjectHideFlags: 0
@@ -1583,8 +1585,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1687648099}
-        m_MethodName: ShowAUI
+      - m_Target: {fileID: 1891170139}
+        m_MethodName: ShowAchievements
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

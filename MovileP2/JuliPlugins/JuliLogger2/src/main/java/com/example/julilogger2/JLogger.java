@@ -1,5 +1,6 @@
 package com.example.julilogger2;
 
+import android.app.Activity;
 import android.util.Log;
 
 public class JLogger {
@@ -14,4 +15,10 @@ public class JLogger {
     public  void SendLog(String msg){
         Log.d( "JL=>", msg);
     }
+
+    public void showPaths (Activity mainActivity )
+    {
+        Log.d(tag,mainActivity.getApplicationContext().getFilesDir().getPath())
+    }
 }
+

@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class GetAchivement : MonoBehaviour
 {
+    [SerializeField] PlayGames pg;
+
     public void crazyFunk()
     {
-        PlayGamesScript.UnlockAchievement(GPGSIds.achievement_abrir_el_juego);
-        PlayGamesScript.ShowAchievementsUI();
+        //pg.UnlockAchievement(GPGSIds.achievement_abrir_el_juego);
+        //pg.ShowAchievementsUI();
     }
     public void ShowAUI()
     {
-        PlayGamesScript.ShowAchievementsUI();
+        pg.ShowAchievements();
     }
 }
