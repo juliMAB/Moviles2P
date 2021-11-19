@@ -1,16 +1,27 @@
-﻿using GooglePlayGames;
+﻿using Assets.scripts;
+using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 using UnityEngine;
 
-public class PlayGamesScript : MonoBehaviour
+public class PlayGamesScript : MonoBehaviourSingleton<PlayGamesScript>
 {
     // Start is called before the first frame update
     void Start()
     {
-        PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
-        PlayGamesPlatform.InitializeInstance(config);
-        PlayGamesPlatform.Activate();
-        SingIn();
+        try
+        {
+            PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder()
+            .RequestServerAuthCode(false).Build();
+            PlayGamesPlatform.InitializeInstance(config);
+            PlayGamesPlatform.Activate();
+            SingnInUserWithPlayGames();
+            SingIn();
+        }
+        catch (System.Exception exception)
+        {
+            Debug.Log(exception);
+        }
+        
     }
 
     // Update is called once per frame
@@ -24,7 +35,21 @@ public class PlayGamesScript : MonoBehaviour
     {
         Social.ReportProgress(id, 100, success => { });
     }
-
+    void SingnInUserWithPlayGames()
+    {
+        PlayGamesPlatform.Instance.Authenticate(SignInInteractivity.CanPromptOnce, (success) =>
+        {
+            switch (success)
+            {
+                case SignInStatus.Success:
+                    Debug.Log("signed in player using play games successfully");
+                    break;
+                default:
+                    Debug.Log("Signin not successfull: " + success);
+                    break;
+            }
+        });
+    }
     public static void ShowAchievementsUI()
     {
         Social.ShowAchievementsUI();

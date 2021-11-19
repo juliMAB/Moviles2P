@@ -11,7 +11,7 @@ public class caracterFXcontroller : MonoBehaviour
     [SerializeField] GameObject cubitosConteiner;
     [SerializeField] GameObject meteoritosConteiner;
     [SerializeField] float speed = 1f;
-    private Animator animator;
+    [SerializeField] private Animator animator;
     private Rigidbody[] rb_Cubitos;
     private Rigidbody[] rb_Meteoritos;
 
@@ -39,6 +39,7 @@ public class caracterFXcontroller : MonoBehaviour
             {
                 go.SetActive(true);
                 go.transform.position = LRspawnPoint.transform.position;
+                rb_Cubitos[index].velocity = Vector3.zero;
                 rb_Cubitos[index].AddForce(Vector3.left * speed, ForceMode.Impulse);
                 return;
             }
@@ -60,6 +61,7 @@ public class caracterFXcontroller : MonoBehaviour
             {
                 go.SetActive(true);
                 go.transform.position = RRspawnPoint.transform.position;
+                rb_Cubitos[index].velocity = Vector3.zero;
                 rb_Cubitos[index].AddForce(Vector3.left * speed, ForceMode.Impulse);
                 return;
             }

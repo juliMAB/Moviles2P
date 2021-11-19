@@ -16,24 +16,41 @@ public class UI_Asistans : MonoBehaviour
 
     private int index;
 
-    private void Start()
+    //private void Start()
+    //{
+    //    button_UI.ClickFunc = () =>
+    //    {
+    //        if (textWriterSingle != null && textWriterSingle.IsActive())
+    //        {
+    //            textWriterSingle.WriteAllAndDestroy();
+    //        }
+    //        else
+    //        {
+    //            index++;
+    //            if (index<message.Length)
+    //            {
+    //                string mesage = message[index];
+    //                textWriterSingle = textWriter.AddWriter_Static(messageText, mesage, speed, true, true, xd);
+    //            }
+    //        }
+    //    };
+    //}
+
+    public void onButton()
     {
-        button_UI.ClickFunc = () =>
+        if (textWriterSingle != null && textWriterSingle.IsActive())
         {
-            if (textWriterSingle != null && textWriterSingle.IsActive())
+            textWriterSingle.WriteAllAndDestroy();
+        }
+        else
+        {
+            index++;
+            if (index < message.Length)
             {
-                textWriterSingle.WriteAllAndDestroy();
+                string mesage = message[index];
+                textWriterSingle = textWriter.AddWriter_Static(messageText, mesage, speed, true, true, xd);
             }
-            else
-            {
-                index++;
-                if (index<message.Length)
-                {
-                    string mesage = message[index];
-                    textWriterSingle = textWriter.AddWriter_Static(messageText, mesage, speed, true, true, xd);
-                }
-            }
-        };
+        }
     }
 
     private void xd()

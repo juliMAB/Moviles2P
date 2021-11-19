@@ -49,7 +49,7 @@ namespace Assets.scripts
             if (m_timeToHitF<=0)
             {
                 fXcontroller.RandomHit();
-                m_timeToHitF = m_timeToHit;
+                m_timeToHitF = m_timeToHit + Random.Range(-1.0f,1.0f);
             }
         }
         private void acepter(int index)
