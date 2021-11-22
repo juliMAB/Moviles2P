@@ -16,9 +16,5 @@ public class JLogger {
         Log.d( "JL=>", msg);
     }
 
-    public void showPaths (Activity mainActivity )
-    {
-        Log.d(tag,mainActivity.getApplicationContext().getFilesDir().getPath())
-    }
 }
 

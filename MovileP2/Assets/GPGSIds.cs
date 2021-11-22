@@ -30,6 +30,7 @@ public static class GPGSIds
         public const string achievement_darle_a_play = "CgkI_bPmltAREAIQAg"; // <GPGSID>
         public const string achievement_llegar_a_20_segundos = "CgkI_bPmltAREAIQBA"; // <GPGSID>
         public const string achievement_abrir_el_juego = "CgkI_bPmltAREAIQAQ"; // <GPGSID>
+        public const string leaderboard_score_table = "CgkI_bPmltAREAIQCA"; // <GPGSID>
 
 }
 

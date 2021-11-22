@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 
 public class textWriter : MonoBehaviour
@@ -16,22 +17,22 @@ public class textWriter : MonoBehaviour
         instance = this;
         textWriterSingleList = new List<textWriterSingle>();
     }
-    public static textWriterSingle AddWriter_Static(Text uiText, string textToWrite, float timePerCharacter, bool invisibleCharacters,bool removeBeforeAdder,Action onComplete){
+    public static textWriterSingle AddWriter_Static(TextMeshProUGUI uiText, string textToWrite, float timePerCharacter, bool invisibleCharacters,bool removeBeforeAdder,Action onComplete){
         if (removeBeforeAdder)
             instance.RemoveWriter(uiText);
         return instance.AddWriter(uiText, textToWrite, timePerCharacter, invisibleCharacters,onComplete);
     }
-    private textWriterSingle AddWriter(Text uiText, string textToWrite, float timePerCharacter, bool invisibleCharacters,Action onComplete){
+    private textWriterSingle AddWriter(TextMeshProUGUI uiText, string textToWrite, float timePerCharacter, bool invisibleCharacters,Action onComplete){
         textWriterSingle textWriterSingle = new textWriterSingle(uiText, textToWrite, timePerCharacter, invisibleCharacters,onComplete);
         textWriterSingleList.Add(textWriterSingle);
         return textWriterSingle;
     }
 
-    public static void RemoveWriter_Static(Text uiText)
+    public static void RemoveWriter_Static(TextMeshProUGUI uiText)
     {
         instance.RemoveWriter(uiText);
     }
-    private void RemoveWriter(Text uiText)
+    private void RemoveWriter(TextMeshProUGUI uiText)
     {
         for (int i = 0; i < textWriterSingleList.Count; i++)
         {
@@ -57,7 +58,7 @@ public class textWriter : MonoBehaviour
 }
 public class textWriterSingle
 {
-    private Text uiText;
+    private TextMeshProUGUI uiText;
     private string textToWrite;
     private int characterIndex;
     private float timePerCharacter;
@@ -65,7 +66,7 @@ public class textWriterSingle
     private bool invisibleCharacters;
     private Action onComplete;
 
-    public textWriterSingle(Text uiText, string textToWrite, float timePerCharacter, bool invisibleCharacters,Action onComplete)
+    public textWriterSingle(TextMeshProUGUI uiText, string textToWrite, float timePerCharacter, bool invisibleCharacters,Action onComplete)
     {
         this.uiText = uiText;
         this.textToWrite = textToWrite;
@@ -74,7 +75,7 @@ public class textWriterSingle
         this.onComplete = onComplete;
         characterIndex = 0;
     }
-    public void AddWriter(Text uiText, string textToWrite, float timePerCharacter, bool invisibleCharacters)
+    public void AddWriter(TextMeshProUGUI uiText, string textToWrite, float timePerCharacter, bool invisibleCharacters)
     {
         this.uiText = uiText;
         this.textToWrite = textToWrite;
@@ -103,7 +104,7 @@ public class textWriterSingle
         }
         return false;
     }
-    public Text GetUiText()
+    public TextMeshProUGUI GetUiText()
     {
         return uiText;
     }

@@ -6,40 +6,44 @@ using GooglePlayGames.BasicApi;
 
 public class PlayGames : MonoBehaviour
 {
+
+
+
     public int playerScore;
-    string leaderboardID = "";
-
-    static string[] achievementID = new string[3];
-
+    string leaderboardID = GPGSIds.leaderboard_score_table;
+    string achievementID = GPGSIds.achievement_abrir_el_juego;
     public static PlayGamesPlatform platform;
 
     void Start()
     {
-        achievementID[0] = GPGSIds.achievement_abrir_el_juego;
-        achievementID[1] = GPGSIds.achievement_darle_a_play;
-        achievementID[2] = GPGSIds.achievement_durar_10_segundos;
-
-        if (platform == null)
+        Invoke(nameof(Init), 2);
+    }
+    private void Init()
+    {
+        
         {
-            PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
-            PlayGamesPlatform.InitializeInstance(config);
-            PlayGamesPlatform.DebugLogEnabled = true;
-            platform = PlayGamesPlatform.Activate();
+            if (platform == null)
+            {
+                PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
+                PlayGamesPlatform.InitializeInstance(config);
+                PlayGamesPlatform.DebugLogEnabled = true;
+                platform = PlayGamesPlatform.Activate();
+                JLogger.SendLog("PlayGames.cs end platform == null");
+            }
+
+            Social.Active.localUser.Authenticate(success =>
+            {
+                if (success)
+                {
+                    Debug.Log("Logged in successfully");
+                }
+                else
+                {
+                    Debug.Log("Login Failed");
+                }
+            });
+            UnlockAchievement();
         }
-
-        Social.Active.localUser.Authenticate(success =>
-        {
-            if (success)
-            {
-                Debug.Log("Logged in successfully");
-            }
-            else
-            {
-                Debug.Log("Login Failed");
-            }
-        });
-
-        UnlockAchievement(0);
     }
 
     public void AddScoreToLeaderboard()
@@ -66,11 +70,11 @@ public class PlayGames : MonoBehaviour
         }
     }
 
-    public static void UnlockAchievement(int ID)
+    public void UnlockAchievement()
     {
         if (Social.Active.localUser.authenticated)
         {
-            Social.ReportProgress(achievementID[ID], 100f, success => { });
+            Social.ReportProgress(achievementID, 100f, success => { });
         }
     }
 }
