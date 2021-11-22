@@ -6,17 +6,13 @@ using GooglePlayGames.BasicApi;
 
 public class PlayGames : MonoBehaviour
 {
-
-
-
-    public int playerScore;
-    string leaderboardID = GPGSIds.leaderboard_score_table;
-    string achievementID = GPGSIds.achievement_abrir_el_juego;
-    public static PlayGamesPlatform platform;
+    private static string leaderboardID = GPGSIds.leaderboard_score_table;
+    private static string achievementID = GPGSIds.achievement_abrir_el_juego;
+    private static PlayGamesPlatform platform;
 
     void Start()
     {
-        Invoke(nameof(Init), 2);
+        Init();
     }
     private void Init()
     {
@@ -46,15 +42,15 @@ public class PlayGames : MonoBehaviour
         }
     }
 
-    public void AddScoreToLeaderboard()
+    static public void AddScoreToLeaderboard(int score)
     {
         if (Social.Active.localUser.authenticated)
         {
-            Social.ReportScore(playerScore, leaderboardID, success => { });
+            Social.ReportScore(score, leaderboardID, success => { });
         }
     }
 
-    public void ShowLeaderboard()
+    static public void ShowLeaderboard()
     {
         if (Social.Active.localUser.authenticated)
         {
@@ -62,7 +58,7 @@ public class PlayGames : MonoBehaviour
         }
     }
 
-    public void ShowAchievements()
+    static public void ShowAchievements()
     {
         if (Social.Active.localUser.authenticated)
         {
@@ -70,7 +66,7 @@ public class PlayGames : MonoBehaviour
         }
     }
 
-    public void UnlockAchievement()
+    static public void UnlockAchievement()
     {
         if (Social.Active.localUser.authenticated)
         {
