@@ -10,10 +10,21 @@ public class DataManager : MonoBehaviourSingleton<DataManager>
 
     private float maxTime;
 
-    public int Gold { get => gold; set { gold = value; OnGoldChange.Invoke(); } }
+    private bool[] unlocked = new bool[6];
+
+    private Material material;
+
+
+
+
+    public int Gold { get => gold; set { gold = value; OnGoldChange.Invoke(value); } }
     public float MaxTime { get => maxTime; set => maxTime = value;  }
-    
-    public Action OnGoldChange;
+    public bool[] Unlocked { get => unlocked; set => unlocked = value; }
+    public Material Material { get => material; set => material = value; }
+
+    public Action<int> OnGoldChange;
+
+
 
     private void Start()
     {
@@ -25,10 +36,37 @@ public class DataManager : MonoBehaviourSingleton<DataManager>
         if (PlayerPrefs.GetFloat("maxTime") <= maxTime)
             PlayerPrefs.SetFloat("maxTime", maxTime);
         PlayerPrefs.SetInt("gold", gold);
+        for (int i = 0; i < unlocked.Length; i++)
+        {
+            bool v = unlocked[i];
+            if (v==true)
+            
+                PlayerPrefs.SetInt("Unlocked" + i, 1);
+            
+            else
+            
+                PlayerPrefs.SetInt("Unlocked" + i, 0);
+            
+            
+        }
+        
     }
     void LoadData()
     {
         PlayerPrefs.GetInt("gold", gold);
         PlayerPrefs.GetFloat("maxTime", maxTime);
+        for (int i = 0; i < unlocked.Length; i++)
+        {
+            bool v = unlocked[i];
+            if (v == true)
+            
+                PlayerPrefs.GetInt("Unlocked" + i, 1);
+            
+            else
+            
+                PlayerPrefs.GetInt("Unlocked" + i, 0);
+            
+
+        }
     }
 }
