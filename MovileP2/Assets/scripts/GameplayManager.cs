@@ -148,6 +148,8 @@ namespace Assets.scripts
             actualstate = states.end;
             End.SetActive(true);
             PlayGames.AddScoreToLeaderboard(time_in_game);
+            Handheld.Vibrate();
+            //Vibratior.Vibrate();
             JLogger.SendLog("Perdiste.");
         }
         void DisableIntro()
