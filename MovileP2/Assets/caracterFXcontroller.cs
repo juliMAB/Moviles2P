@@ -15,7 +15,7 @@ public class caracterFXcontroller : MonoBehaviour
     private Rigidbody[] rb_Cubitos;
     private Rigidbody[] rb_Meteoritos;
 
-    const int hitAmount = 3;
+    const int hitAmount = 4;
     private void Awake()
     {
         rb_Cubitos = cubitosConteiner.GetComponentsInChildren<Rigidbody>();
@@ -25,6 +25,10 @@ public class caracterFXcontroller : MonoBehaviour
         for (int i = 0; i < rb_Cubitos.Length; i++)
         {
             rb_Cubitos[i].gameObject.SetActive(false);
+        }
+        for (int i = 0; i < rb_Meteoritos.Length; i++)
+        {
+            rb_Meteoritos[i].gameObject.SetActive(false);
         }
     }
 
@@ -99,10 +103,16 @@ public class caracterFXcontroller : MonoBehaviour
             {
                 go.SetActive(true);
                 go.transform.position = go.transform.parent.transform.position;
+                go.GetComponent<meteroid>().CallStart();
                 return;
             }
         }
     }
+    public void MeteoriteAtack()
+    {
+        animator.Play("Meteorite");
+    }
+
     public void RhitAtack()
     {
         animator.Play("RightHit");
@@ -124,6 +134,9 @@ public class caracterFXcontroller : MonoBehaviour
                 break;
             case 2:
                 animator.Play("MiddleDownHit");
+                break;
+            case 3:
+                animator.Play("Meteorite");
                 break;
             default:
                 break;

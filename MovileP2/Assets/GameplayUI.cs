@@ -7,6 +7,8 @@ public class GameplayUI : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI TimerUi;
 
+    [SerializeField] TextMeshProUGUI Oro;
+
     public void UpdateTimer(int Time)
     {
         TimerUi.text = "Time"+ BuildTime(Time);
@@ -25,5 +27,9 @@ public class GameplayUI : MonoBehaviour
             }
             return minutes.ToString() + " : " + Time.ToString();
         }
+    }
+    public void UpdateOro(int oro)
+    {
+        Oro.text = oro.ToString();
     }
 }

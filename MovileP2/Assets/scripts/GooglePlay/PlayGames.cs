@@ -24,7 +24,6 @@ public class PlayGames : MonoBehaviourSingleton<PlayGames>
                 PlayGamesPlatform.InitializeInstance(config);
                 PlayGamesPlatform.DebugLogEnabled = true;
                 platform = PlayGamesPlatform.Activate();
-                JLogger.SendLog("PlayGames.cs end platform == null");
             }
 
             Social.Active.localUser.Authenticate(success =>
@@ -32,10 +31,12 @@ public class PlayGames : MonoBehaviourSingleton<PlayGames>
                 if (success)
                 {
                     Debug.Log("Logged in successfully");
+                    JLogger.SendLog("Logged in successfully");
                 }
                 else
                 {
                     Debug.Log("Login Failed");
+                    JLogger.SendLog("Login Failed");
                 }
             });
             UnlockAchievement(achievementID);
@@ -70,6 +71,7 @@ public class PlayGames : MonoBehaviourSingleton<PlayGames>
     {
         if (Social.Active.localUser.authenticated)
         {
+            JLogger.SendLog("LLamdo a desbloquear logro");
             Social.ReportProgress(a, 100f, success => { });
         }
     }

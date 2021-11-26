@@ -39,17 +39,20 @@ public class ShopController : MonoBehaviour
         {
             Alert.GetComponent<TextMeshProUGUI>().text = "Equiped";
             DataManager.Get().Material = showMaterial;
-            
+            JLogger.SendLog("equipaste el color: " + showMaterial.color.ToString());
+
         }
         else if (DataManager.Get().Gold>=price[index])
         {
             DataManager.Get().Gold -= price[index];
             DataManager.Get().Unlocked[index]=true;
             Alert.GetComponent<TextMeshProUGUI>().text = "Buy!!";
+            JLogger.SendLog("realizaste una compra");
         }
         else
         {
             Alert.GetComponent<TextMeshProUGUI>().text = "No Money!!";
+            JLogger.SendLog("no tienes dinero para esta compra");
         }
         Alert.GetComponent<Animator>().Play("a");
         Invoke(nameof(AlertDisabled), 2);

@@ -7,14 +7,15 @@ public class EndManager : MonoBehaviour
 {
     public static System.Action OnEndGame;
 
+    [SerializeField] SceneController sc;
 
 
     public void ReloadScene()
     {
-        SceneController.goToGame();
+        sc.goToGame();
     }
     public void GoToMenu()
     {
-        SceneController.goToMenu();
+        sc.goToMenu();
     }
 }

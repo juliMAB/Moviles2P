@@ -24,9 +24,9 @@
 
 public static class GPGSIds
 {
-        public const string achievement_llegar_a_los_30_segundos = "CgkI_bPmltAREAIQBQ"; // <GPGSID>
         public const string achievement_durar_10_segundos = "CgkI_bPmltAREAIQAw"; // <GPGSID>
-        public const string achievement_llegar_a_los_40_segundos = "CgkI_bPmltAREAIQBg"; // <GPGSID>
+        public const string achievement_llegar_a_los_2_minutos_todo_un_tryhard = "CgkI_bPmltAREAIQBg"; // <GPGSID>
+        public const string achievement_llegar_a_los_60_segundos = "CgkI_bPmltAREAIQBQ"; // <GPGSID>
         public const string achievement_darle_a_play = "CgkI_bPmltAREAIQAg"; // <GPGSID>
         public const string achievement_llegar_a_20_segundos = "CgkI_bPmltAREAIQBA"; // <GPGSID>
         public const string achievement_abrir_el_juego = "CgkI_bPmltAREAIQAQ"; // <GPGSID>

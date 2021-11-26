@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SceneController : MonoBehaviour
 {
-    public static void goToGame() { SceneManager.LoadScene("Game"); }
+    public void goToGame() { JLogger.SendLog("Cambiar a escena game"); SceneManager.LoadScene("Game"); }
 
-    public static void goToMenu() { SceneManager.LoadScene("Menu"); }
+    public void goToMenu() { JLogger.SendLog("Cambiar a escena Menu"); SceneManager.LoadScene("MainScene"); }
 }
