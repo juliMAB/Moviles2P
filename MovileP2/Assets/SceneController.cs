@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SceneController : MonoBehaviour
 {
-    public void goToGame() { SceneManager.LoadScene("Game"); }
+    public static void goToGame() { SceneManager.LoadScene("Game"); }
 
-    public void goToMenu() { SceneManager.LoadScene("Menu"); }
+    public static void goToMenu() { SceneManager.LoadScene("Menu"); }
 }

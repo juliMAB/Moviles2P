@@ -1,15 +1,16 @@
-﻿using System.Collections;
+﻿using Assets.scripts;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TouchToDestroy : MonoBehaviour
 {
-    [SerializeField] LayerMask layersToDesty;
-    private void OnCollisionEnter(Collision collision)
+    [SerializeField] GameObject ball;
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.layer == layersToDesty)
+        if (other.gameObject == ball)
         {
-            collision.gameObject.SetActive(false);
+            EndManager.OnEndGame.Invoke();
         }
     }
 }

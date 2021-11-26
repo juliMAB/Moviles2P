@@ -6,7 +6,7 @@ namespace Assets.scripts
 {
     public class GameplayManager : MonoBehaviour
     {
-        enum states{ intro, game }
+        enum states{ intro, game,end }
         states actualstate;
         [SerializeField] int m_introTime;
 
@@ -22,10 +22,17 @@ namespace Assets.scripts
 
         [SerializeField] GameObject Intro;
 
+        [SerializeField] GameObject End;
+
         [SerializeField] GameObject platform;
 
         [SerializeField] GameplayUI GPUI;
 
+        [SerializeField] public static int oro;
+
+        [SerializeField] public static int time_in_game;
+
+        
 
         Animator AnimationPc;
 
@@ -36,9 +43,16 @@ namespace Assets.scripts
         private void OnEnable()
         {
             IntroManager.OnEndTutorial += changeState;
-
-
+            EndManager.OnEndGame += changeStateEnd;
+            EndManager.OnEndGame += OnSaveScore;
+            Intro.SetActive(true);
         }
+        public void OnSaveScore()
+        {
+            DataManager.Get().Gold += oro;
+            DataManager.Get().MaxTime = time_in_game;
+        }
+
         private void OnDisable()
         {
             IntroManager.OnEndTutorial -= changeState;
@@ -46,7 +60,7 @@ namespace Assets.scripts
 
         private void Start()
         {
-            if (DataManager.Get()!=null)
+            if (DataManager.Get()!=null && DataManager.Get().Material!=null)
             {
                 ball.SetActive(true);
                 ball.GetComponent<Material>().color = DataManager.Get().Material.color;
@@ -77,7 +91,12 @@ namespace Assets.scripts
         private void changeState()
         {
             actualstate = states.game;
-            Invoke(nameof(DisableIntro), 1);
+            Invoke(nameof(DisableIntro), 0.1f);
+        }
+        private void changeStateEnd()
+        {
+            actualstate = states.end;
+            End.SetActive(true);
         }
         void DisableIntro()
         {

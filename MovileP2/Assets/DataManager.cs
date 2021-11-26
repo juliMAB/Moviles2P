@@ -17,13 +17,21 @@ public class DataManager : MonoBehaviourSingleton<DataManager>
 
 
 
-    public int Gold { get => gold; set { gold = value; OnGoldChange.Invoke(value); } }
-    public float MaxTime { get => maxTime; set { maxTime = value; OnMaxTimeChange.Invoke(); }  }
+    public float MaxTime
+    {
+        get => maxTime; set
+        {
+            if (value>maxTime)
+            {
+            maxTime = value; OnMaxTimeChange.Invoke(); }  
+        }
+    } 
     public bool[] Unlocked { get => unlocked; set => unlocked = value; }
     public Material Material { get => material; set => material = value; }
 
     public Action<int> OnGoldChange;
     public Action OnMaxTimeChange;
+    public int Gold { get => gold; set { gold = value; OnGoldChange.Invoke(value); } }  
 
 
     private void Start()
