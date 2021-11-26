@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Assets.scripts
 {
-    public class GameplayManager : MonoBehaviourSingleton<GameplayManager>
+    public class GameplayManager : MonoBehaviour
     {
         enum states{ intro, game }
         states actualstate;
@@ -20,37 +20,68 @@ namespace Assets.scripts
 
         [SerializeField] GameObject pc;
 
-        [SerializeField] UI_Asistans UI_Asistans;
+        [SerializeField] GameObject Intro;
+
+        [SerializeField] GameObject platform;
+
+        [SerializeField] GameplayUI GPUI;
+
 
         Animator AnimationPc;
-
-        const float m_StartTime = 60;
 
         private caracterFXcontroller fXcontroller;
 
         public float GameTime { get => m_time; set => m_time = value; }
         public GameObject Ball { get => ball; set => ball = value; }
+        private void OnEnable()
+        {
+            IntroManager.OnEndTutorial += changeState;
+
+
+        }
+        private void OnDisable()
+        {
+            IntroManager.OnEndTutorial -= changeState;
+        }
 
         private void Start()
         {
+            if (DataManager.Get()!=null)
+            {
+                ball.SetActive(true);
+                ball.GetComponent<Material>().color = DataManager.Get().Material.color;
+            }
             AnimationPc = pc.GetComponent<Animator>();
-            m_time = m_StartTime;
-            UI_Asistans.onIndexChange += acepter;
+            
             fXcontroller = pc.GetComponent<caracterFXcontroller>();
             m_timeToHitF = m_timeToHit;
+            ball.SetActive(false);
+            pc.SetActive(false);
+            platform.SetActive(false);
         }
         private void Update()
         {
             if (actualstate == states.game)
             {
-                m_time -= Time.deltaTime;
+                m_time += Time.deltaTime;
                 m_timeToHitF -= Time.deltaTime;
-            }
+                GPUI.UpdateTimer((int)m_time);
             if (m_timeToHitF<=0)
             {
                 fXcontroller.RandomHit();
                 m_timeToHitF = m_timeToHit + Random.Range(-1.0f,1.0f);
             }
+            }
+        }
+
+        private void changeState()
+        {
+            actualstate = states.game;
+            Invoke(nameof(DisableIntro), 1);
+        }
+        void DisableIntro()
+        {
+            Intro.SetActive(false);
         }
         private void acepter(int index)
         {

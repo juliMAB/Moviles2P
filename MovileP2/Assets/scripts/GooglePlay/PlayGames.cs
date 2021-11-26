@@ -2,9 +2,9 @@
 using System;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
+using Assets.scripts;
 
-
-public class PlayGames : MonoBehaviour
+public class PlayGames : MonoBehaviourSingleton<PlayGames>
 {
     private static string leaderboardID = GPGSIds.leaderboard_score_table;
     private static string achievementID = GPGSIds.achievement_abrir_el_juego;
@@ -38,7 +38,7 @@ public class PlayGames : MonoBehaviour
                     Debug.Log("Login Failed");
                 }
             });
-            UnlockAchievement();
+            UnlockAchievement(achievementID);
         }
     }
 
@@ -66,11 +66,11 @@ public class PlayGames : MonoBehaviour
         }
     }
 
-    static public void UnlockAchievement()
+    static public void UnlockAchievement(string a)
     {
         if (Social.Active.localUser.authenticated)
         {
-            Social.ReportProgress(achievementID, 100f, success => { });
+            Social.ReportProgress(a, 100f, success => { });
         }
     }
 }

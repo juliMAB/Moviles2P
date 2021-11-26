@@ -22,10 +22,15 @@ public class caracterFXcontroller : MonoBehaviour
         rb_Meteoritos = meteoritosConteiner.GetComponentsInChildren<Rigidbody>();
         animator = GetComponent<Animator>();
         Debug.Log(rb_Cubitos.Length);
+        for (int i = 0; i < rb_Cubitos.Length; i++)
+        {
+            rb_Cubitos[i].gameObject.SetActive(false);
+        }
     }
 
     void Spawn_AtackL()
     {
+        int errorCounter=0;
         GameObject go = null;
         while (go == null)
         {
@@ -43,14 +48,21 @@ public class caracterFXcontroller : MonoBehaviour
                 rb_Cubitos[index].AddForce(Vector3.left * speed, ForceMode.Impulse);
                 return;
             }
+                errorCounter++;
+            if (errorCounter> rb_Cubitos.Length)
+            {
+                Debug.Log("no hay cubitos para tirar.");
+                return;
+            }
         }
     }
     void Spawn_AtackR()
     {
+        int errorCounter = 0;
         GameObject go = null;  
         while (go==null)
         {
-            int index = Random.Range(0, rb_Cubitos.Length);
+            int index = Random.Range(0, rb_Cubitos.Length-1);
             
             go = rb_Cubitos[index].gameObject;
             if (go.activeSelf)
@@ -65,6 +77,11 @@ public class caracterFXcontroller : MonoBehaviour
                 rb_Cubitos[index].AddForce(Vector3.left * speed, ForceMode.Impulse);
                 return;
             }
+            if (errorCounter > rb_Cubitos.Length)
+            {
+                Debug.Log("no hay cubitos para tirar.");
+                return;
+            }
         }
     }
     void Spawn_Meteorito()
@@ -72,7 +89,7 @@ public class caracterFXcontroller : MonoBehaviour
         GameObject go = null;
         while (go == null)
         {
-            int index = Random.Range(0, rb_Meteoritos.Length);
+            int index = Random.Range(0, rb_Meteoritos.Length-1);
             go = rb_Meteoritos[index].gameObject;
             if (go.activeSelf)
             {

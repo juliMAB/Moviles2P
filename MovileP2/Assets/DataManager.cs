@@ -12,18 +12,18 @@ public class DataManager : MonoBehaviourSingleton<DataManager>
 
     private bool[] unlocked = new bool[6];
 
-    private Material material;
+    [SerializeField]private Material material;
 
 
 
 
     public int Gold { get => gold; set { gold = value; OnGoldChange.Invoke(value); } }
-    public float MaxTime { get => maxTime; set => maxTime = value;  }
+    public float MaxTime { get => maxTime; set { maxTime = value; OnMaxTimeChange.Invoke(); }  }
     public bool[] Unlocked { get => unlocked; set => unlocked = value; }
     public Material Material { get => material; set => material = value; }
 
     public Action<int> OnGoldChange;
-
+    public Action OnMaxTimeChange;
 
 
     private void Start()

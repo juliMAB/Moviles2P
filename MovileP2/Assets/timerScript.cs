@@ -20,31 +20,31 @@ public class timerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameplayManager.Get().GameTime>0)
-        {
-            float b = GameplayManager.Get().GameTime;
-            int a = (int)b;
-            t_Time.text = a.ToString();
-            t_Time.text += ":";
-            b = ((b - a) * 100);
-            a = (int)b;
-            if (a < 10)
-            {
-                t_Time.text += "0";
-            }
-            t_Time.text += a.ToString() + ":";
-            b = ((b - a) * 100);
-            a = (int)b;
-            if (a < 10)
-            {
-                t_Time.text += "0";
-            }
-            t_Time.text += a.ToString();
-            if (GameplayManager.Get().GameTime<10)
-            {
-                changeColor();
-            }
-        }
+        //if (GameplayManager.Get().GameTime>0)
+        //{
+        //    float b = GameplayManager.Get().GameTime;
+        //    int a = (int)b;
+        //    t_Time.text = a.ToString();
+        //    t_Time.text += ":";
+        //    b = ((b - a) * 100);
+        //    a = (int)b;
+        //    if (a < 10)
+        //    {
+        //        t_Time.text += "0";
+        //    }
+        //    t_Time.text += a.ToString() + ":";
+        //    b = ((b - a) * 100);
+        //    a = (int)b;
+        //    if (a < 10)
+        //    {
+        //        t_Time.text += "0";
+        //    }
+        //    t_Time.text += a.ToString();
+        //    if (GameplayManager.Get().GameTime<10)
+        //    {
+        //        changeColor();
+        //    }
+        //}
     }
     void changeColor()
     {

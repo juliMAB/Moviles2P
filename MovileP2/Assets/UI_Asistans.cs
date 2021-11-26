@@ -12,11 +12,17 @@ public class UI_Asistans : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] string[] message;
     private textWriterSingle textWriterSingle;
-    public Action<int> onIndexChange;
-
+    public Action<int> OnIndexChange;
+    public int MaxMessage;
     private int index;
 
-    public void onButton()
+    private void Awake()
+    {
+        OnIndexChange += OnButton;
+        MaxMessage = message.Length;
+    }
+
+    public void OnButton(int index)
     {
         if (textWriterSingle != null && textWriterSingle.IsActive())
         {
@@ -24,7 +30,6 @@ public class UI_Asistans : MonoBehaviour
         }
         else
         {
-            index++;
             if (index < message.Length)
             {
                 string mesage = message[index];
@@ -35,7 +40,7 @@ public class UI_Asistans : MonoBehaviour
 
     private void xd()
     {
-        onIndexChange(index);
+    
     }
 
 }
