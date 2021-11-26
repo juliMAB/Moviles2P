@@ -2335,7 +2335,7 @@ Transform:
   m_Children:
   - {fileID: 1731421492}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1064569586
 GameObject:
@@ -2363,11 +2363,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.1291283, y: -0.06942807, z: 88.86484}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1339879524}
-  - {fileID: 1258597886}
+  m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1162634323
 GameObject:
@@ -2681,7 +2679,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1258597886}
   - component: {fileID: 1258597887}
-  - component: {fileID: 1258597888}
   m_Layer: 0
   m_Name: GooglePlay
   m_TagString: Untagged
@@ -2696,12 +2693,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1258597885}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.1291283, y: -0.06942807, z: 88.86484}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1064569587}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1258597887
 MonoBehaviour:
@@ -2713,18 +2710,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eada7dcb1604501408ed97de26579cde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1258597888
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1258597885}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19982a20ad13faa42ac1a6d9419db309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1270236602
@@ -2792,11 +2777,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1339879523}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.0615728, y: 1.380539, z: 1.1351624}
+  m_LocalPosition: {x: 0.06755555, y: 1.3111109, z: 90}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1064569587}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1339879525
 MonoBehaviour:

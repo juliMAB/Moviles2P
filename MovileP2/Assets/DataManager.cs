@@ -34,14 +34,13 @@ public class DataManager : MonoBehaviourSingleton<DataManager>
 
     private void Start()
     {
-        SaveData();
         LoadData();
     }
 
-    void SaveData()
+    public void SaveData()
     {
-        if (PlayerPrefs.GetFloat("maxTime") <= maxTime)
-            PlayerPrefs.SetFloat("maxTime", maxTime);
+        if (PlayerPrefs.GetInt("maxTime") <= maxTime)
+            PlayerPrefs.SetInt("maxTime", maxTime);
         PlayerPrefs.SetInt("gold", gold);
         for (int i = 0; i < unlocked.Length; i++)
         {
@@ -58,10 +57,10 @@ public class DataManager : MonoBehaviourSingleton<DataManager>
         }
         
     }
-    void LoadData()
+    public void LoadData()
     {
-        PlayerPrefs.GetInt("gold", gold);
-        PlayerPrefs.GetFloat("maxTime", maxTime);
+        gold = PlayerPrefs.GetInt("gold");
+        maxTime = PlayerPrefs.GetInt("maxTime", maxTime);
         for (int i = 0; i < unlocked.Length; i++)
         {
             bool v = unlocked[i];
