@@ -30,8 +30,6 @@ namespace Assets.scripts
 
         [SerializeField] public static int oro;
 
-        [SerializeField] public static int time_in_game;
-
         [SerializeField] money[] cubosOro;
 
         Animator AnimationPc;
@@ -66,14 +64,7 @@ namespace Assets.scripts
         {
             IntroManager.OnEndTutorial += changeState;
             EndManager.OnEndGame += changeStateEnd;
-            EndManager.OnEndGame += OnSaveScore;
             Intro.SetActive(true);
-        }
-        public void OnSaveScore()
-        {
-            DataManager.Get().Gold += oro;
-            DataManager.Get().MaxTime = time_in_game;
-            JLogger.SendLog("SaveData on DataManeger");
         }
 
         private void OnDisable()
@@ -145,12 +136,18 @@ namespace Assets.scripts
         }
         private void changeStateEnd()
         {
-            actualstate = states.end;
-            End.SetActive(true);
-            PlayGames.AddScoreToLeaderboard(time_in_game);
-            Handheld.Vibrate();
-            //Vibratior.Vibrate();
-            JLogger.SendLog("Perdiste.");
+            if (actualstate!=states.end)
+            {
+                actualstate = states.end;
+                End.SetActive(true);
+                PlayGames.AddScoreToLeaderboard((int)m_time);
+                Handheld.Vibrate();
+                DataManager.Get().MaxTime = (int)m_time;
+                DataManager.Get().Gold += oro;
+                //Vibratior.Vibrate();
+                JLogger.SendLog("Perdiste.");
+            }
+           
         }
         void DisableIntro()
         {

@@ -8,7 +8,7 @@ public class DataManager : MonoBehaviourSingleton<DataManager>
 {
     private int gold;
 
-    private float maxTime;
+    private int maxTime;
 
     private bool[] unlocked = new bool[6];
 
@@ -17,21 +17,19 @@ public class DataManager : MonoBehaviourSingleton<DataManager>
 
 
 
-    public float MaxTime
+    public int MaxTime
     {
         get => maxTime; set
         {
             if (value>maxTime)
             {
-            maxTime = value; OnMaxTimeChange.Invoke(); }  
+            maxTime = value; }  
         }
     } 
     public bool[] Unlocked { get => unlocked; set => unlocked = value; }
     public Material Material { get => material; set => material = value; }
 
-    public Action<int> OnGoldChange;
-    public Action OnMaxTimeChange;
-    public int Gold { get => gold; set { gold = value; OnGoldChange.Invoke(value); } }  
+    public int Gold { get => gold; set { gold = value; } }  
 
 
     private void Start()

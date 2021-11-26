@@ -9,19 +9,19 @@ public class UIColtroller : MonoBehaviour
     [SerializeField] TextMeshProUGUI maxTime;
     private void Start()
     {
-        DataManager.Get().OnGoldChange += UpdateGold;
+        UpdateGold(DataManager.Get().Gold);
+        if (maxTime!=null)
+        {
+        UpdateMaxTime(DataManager.Get().MaxTime);
+
+        }
     }
     public void UpdateGold(int a)
     {
         gold.text = a.ToString();
     }
-
     public void UpdateMaxTime(int b)
     {
         maxTime.text = b.ToString();
-    }
-    private void OnDestroy()
-    {
-        DataManager.Get().OnGoldChange -= UpdateGold;
     }
 }
