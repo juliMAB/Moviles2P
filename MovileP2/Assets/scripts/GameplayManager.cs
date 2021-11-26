@@ -147,6 +147,8 @@ namespace Assets.scripts
         {
             actualstate = states.end;
             End.SetActive(true);
+            PlayGames.AddScoreToLeaderboard(time_in_game);
+            JLogger.SendLog("Perdiste.");
         }
         void DisableIntro()
         {

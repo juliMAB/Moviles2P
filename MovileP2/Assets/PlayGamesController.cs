@@ -16,4 +16,9 @@ public class PlayGamesController : MonoBehaviour
     {
         PlayGames.ShowLeaderboard();
     }
+
+    public void UnlickePlayAchivement()
+    {
+        PlayGames.UnlockAchievement(GPGSIds.achievement_darle_a_play);
+    }
 }
