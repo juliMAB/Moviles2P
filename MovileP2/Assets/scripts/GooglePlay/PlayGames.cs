@@ -47,7 +47,8 @@ public class PlayGames : MonoBehaviourSingleton<PlayGames>
     {
         if (Social.Active.localUser.authenticated)
         {
-            Social.ReportScore(score, leaderboardID, success => { });
+            Social.ReportScore(score, leaderboardID, success => { JLogger.SendLog("Se subio al leaderboard"); });
+            
         }
     }
 
