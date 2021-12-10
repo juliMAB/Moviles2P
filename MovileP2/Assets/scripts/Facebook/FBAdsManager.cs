@@ -13,8 +13,6 @@ public class FBAdsManager : MonoBehaviour
     private void Start()
     {
         LoadBanner();
-
-        LoadInterstitial();
     }
     public void LoadBanner()
     {
@@ -23,7 +21,7 @@ public class FBAdsManager : MonoBehaviour
             this.adView.Dispose();
         }
 
-        this.adView = new AdView("IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID", AdSize.BANNER_HEIGHT_50);
+        this.adView = new AdView("IMG_16_9_APP_INSTALL#your-placement-id", AdSize.BANNER_HEIGHT_50);
         this.adView.Register(this.gameObject);
 
         // Set delegates to get notified on changes or when the user interacts with the ad.
@@ -47,7 +45,7 @@ public class FBAdsManager : MonoBehaviour
 
     public void LoadInterstitial()
     {
-        this.interstitialAd = new InterstitialAd("IMG_16_9_LINK#YOUR_PLACEMENT_ID");
+        this.interstitialAd = new InterstitialAd("YOUR_PLACEMENT_ID");
         this.interstitialAd.Register(this.gameObject);
 
         // Set delegates to get notified on changes or when the user interacts with the ad.

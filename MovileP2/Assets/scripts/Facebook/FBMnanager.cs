@@ -404,7 +404,7 @@ public class FBMnanager : MonoBehaviour
     string respuesta;
     public void Shared()
     {
-        
+        respuesta = "Shared ";
         Uri uri = new Uri("https://www.youtube.com/watch?v=6oWG2gjyVSY");
         Uri uri2 = new Uri("https://imgur.com/a/1sANcUn");
         FB.ShareLink(uri,"SOY TITULO","SOY DESCRIPCION", uri2,callback: RespuestaShared);
@@ -416,12 +416,10 @@ public class FBMnanager : MonoBehaviour
     }
     private void RespuestaShared(IShareResult x)
     {
-        respuesta = "Shared ";
         JLogger.SendLog(respuesta + x);
     }
     private void RespuestaGR(IGraphResult x)
     {
-        respuesta = "APIGRAPH ";
         JLogger.SendLog(respuesta + x);
     }
 
@@ -446,20 +444,4 @@ public class FBMnanager : MonoBehaviour
         FB.API("score", method, callback: RespuestaGR, a);
     }
 
-    public void FBLog(string text)
-    {
-        Dictionary<string, object> a = null;
-        FB.LogAppEvent("FBLoger=> " + text, 1, a);
-    }
-
-    public void ShareProgress()
-    {
-        FB.AppRequest("I Just got " + DataManager.Get().MaxTime.ToString() + " Time! Can you beat it?", OGActionType.SEND, null, null,
-            "{\"challenge_Time\":" + DataManager.Get().MaxTime.ToString() + "}", "Friend Smash Challenge!", callback: RespuestaRR);
-    }
-    private void RespuestaRR(IAppRequestResult x)
-    {
-        respuesta = "RR: ";
-        JLogger.SendLog(respuesta + x);
-    }
 }
