@@ -239,10 +239,7 @@ public class FBMnanager : MonoBehaviour
             "Nice Game!", new System.Uri("https://imgur.com/a/1sANcUn"));
     }
 
-    public void FacebookGameRequest()
-    {
-        FB.AppRequest("Hey! Come and play this awesome game!", title: "BAD PC");
-    }
+   
 
     
     private static void ShareCallback(IShareResult result)
@@ -404,7 +401,47 @@ public class FBMnanager : MonoBehaviour
         FB.LogAppEvent(AppEventName.SpentCredits, (float)coins, param);
 
     }
+    string respuesta;
+    public void Shared()
+    {
+        respuesta = "Shared ";
+        Uri uri = new Uri("https://www.youtube.com/watch?v=6oWG2gjyVSY");
+        Uri uri2 = new Uri("https://imgur.com/a/1sANcUn");
+        FB.ShareLink(uri,"SOY TITULO","SOY DESCRIPCION", uri2,callback: RespuestaShared);
+        
+    }
+    public void FacebookGameRequest()
+    {
+        FB.AppRequest("Hey! Come and play this awesome game!", title: "BAD PC");
+    }
+    private void RespuestaShared(IShareResult x)
+    {
+        JLogger.SendLog(respuesta + x);
+    }
+    private void RespuestaGR(IGraphResult x)
+    {
+        JLogger.SendLog(respuesta + x);
+    }
 
-
+    public void FacebookApiGet()
+    {
+        FacebookApi(HttpMethod.GET);
+    }
+    public void FacebookApiSave()
+    {
+        FacebookApi(HttpMethod.POST);
+    }
+    public void FacebookApiDelete()
+    {
+        FacebookApi(HttpMethod.DELETE);
+    }
+    public void FacebookApi(HttpMethod method)
+    {
+        WWWForm form = new WWWForm();
+        IDictionary<string, string> a = null;
+        int gold = DataManager.Get().Gold;
+        a.Add("score", gold.ToString());
+        FB.API("score", method, callback: RespuestaGR, a);
+    }
 
 }
