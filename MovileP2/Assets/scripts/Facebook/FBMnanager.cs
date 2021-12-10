@@ -15,164 +15,84 @@ public class FBMnanager : MonoBehaviour
 
     public Image FB_useerDp;
 
-
-
-
-
     public GameObject friendstxtprefab;
 
     public GameObject GetFriendsPos;
 
-    private static readonly string EVENT_PARAM_SCORE = "score";
+    public Image FacebookImage;
 
-    private static readonly string EVENT_NAME_GAME_PLAYED = "game_played";
+    public string respuesta;
+
+    public string url = "";
+
+    public TMPro.TextMeshProUGUI link;
 
     private void Awake()
-
     {
-
-        // FB.Init(SetInit, onHidenUnity);
-
-        // Panel_Add.SetActive(false);
-
-
-
-
-
         if (!FB.IsInitialized)
-
         {
-
             FB.Init(() =>
-
             {
-
                 if (FB.IsInitialized)
-
                     FB.ActivateApp();
-
                 else
-
-                    Debug.LogError("Couldn't initialize");
-
+                    multiCallLogs("Couldn't initialize");
             },
-
             isGameShown =>
-
             {
-
                 if (!isGameShown)
-
                     Time.timeScale = 0;
-
                 else
-
                     Time.timeScale = 1;
-
             });
-
         }
-
         else
-
             FB.ActivateApp();
-
     }
 
     void SetInit()
-
     {
-
         if (FB.IsLoggedIn)
-
-        {
-
-            Debug.Log("Facebook is Login!");
-
-        }
-
+            multiCallLogs("Facebook is Login!");
         else
-
-        {
-
-            Debug.Log("Facebook is not Logged in!");
-
-        }
-
+            multiCallLogs("Facebook is not Logged in!");
         DealWithFbMenus(FB.IsLoggedIn);
-
     }
 
 
 
     void onHidenUnity(bool isGameShown)
-
     {
-
         if (!isGameShown)
-
-        {
-
             Time.timeScale = 0;
-
-        }
-
         else
-
-        {
-
             Time.timeScale = 1;
-
-        }
-
     }
 
     public void FBLogin()
-
     {
-
         List<string> permissions = new List<string>();
-
         permissions.Add("public_profile");
-
         permissions.Add("user_friends");
-
         FB.LogInWithReadPermissions(permissions, AuthCallBack);
-
     }
 
 
 
     public void CallLogout()
-
     {
-
         StartCoroutine("FBLogout");
-
     }
 
-    IEnumerator FBLogout()
-
-    {
-
+    private IEnumerator FBLogout(){
         FB.LogOut();
-
-        while (FB.IsLoggedIn)
-
-        {
-
-            print("Logging Out");
-
+        while (FB.IsLoggedIn){
+            JLogger.SendLog("Logging Out");
             yield return null;
-
         }
-
-        print("Logout Successful");
-
-        FB_useerDp.sprite = null;
-
+        JLogger.SendLog("Logout Successful");
+        FB_useerDp.sprite = FacebookImage.sprite;
         FB_userName.text = "";
-
     }
 
 
@@ -180,15 +100,10 @@ public class FBMnanager : MonoBehaviour
 
 
     public void GetFriendsPlayingThisGame()
-
     {
-
         string query = "/me/friends";
-
         FB.API(query, HttpMethod.GET, result =>
-
         {
-
             Debug.Log("the raw" + result.RawResult);
 
             var dictionary = (Dictionary<string, object>)Facebook.MiniJSON.Json.Deserialize(result.RawResult);
@@ -196,224 +111,81 @@ public class FBMnanager : MonoBehaviour
             var friendsList = (List<object>)dictionary["data"];
 
 
-
-
-
-
-
-
-
-            foreach (var dict in friendsList)
-
-            {
-
-
+            foreach (var dict in friendsList) {
 
                 GameObject go = Instantiate(friendstxtprefab);
 
                 go.GetComponent<Text>().text = ((Dictionary<string, object>)dict)["name"].ToString();
 
                 go.transform.SetParent(GetFriendsPos.transform, false);
-
-
-
-                //  FriendsText[1].text += ((Dictionary<string, object>)dict)["name"];
-
             }
-
-
-
-
-
-
-
         });
-
-
-
     }
 
-    public void FacebookShare()
-    {
-        FB.ShareLink(new System.Uri("https://play.google.com/store/apps/details?id=com.AguirreJulian.BadPc"), "Check it out!",
-            "Nice Game!", new System.Uri("https://imgur.com/a/1sANcUn"));
-    }
-
-   
-
-    
-    private static void ShareCallback(IShareResult result)
-
-    {
-
-        Debug.Log("ShareCallback");
-
-        SpentCoins(2, "sharelink");
-
+    void AuthCallBack(IResult result){
         if (result.Error != null)
-
-        {
-
-            Debug.LogError(result.Error);
-
-            return;
-
-        }
-
-        Debug.Log(result.RawResult);
-
-    }
-
-    // Start is called before the first frame update
-
-    void AuthCallBack(IResult result)
-
-    {
-
-        if (result.Error != null)
-
-        {
-
-            Debug.Log(result.Error);
-
-        }
-
+            multiCallLogs(result.Error);
         else
-
         {
-
             if (FB.IsLoggedIn)
-
-            {
-
-                Debug.Log("Facebook is Login!");
-
-                // Panel_Add.SetActive(true);
-
-            }
-
+                multiCallLogs("Facebook is Login!");
             else
-
-            {
-
-                Debug.Log("Facebook is not Logged in!");
-
-            }
-
+                multiCallLogs("Facebook is not Logged!");
             DealWithFbMenus(FB.IsLoggedIn);
-
         }
-
     }
 
+    void multiCallLogs(string text)
+    {
+        Debug.Log(text);
+        JLogger.SendLog(text);
+    }
 
 
     void DealWithFbMenus(bool isLoggedIn)
-
     {
-
         if (isLoggedIn)
-
         {
-
             FB.API("/me?fields=first_name", HttpMethod.GET, DisplayUsername);
-
             FB.API("/me/picture?type=square&height=128&width=128", HttpMethod.GET, DisplayProfilePic);
-
         }
-
-        else
-
-        {
-
-
-
-        }
-
     }
-
     void DisplayUsername(IResult result)
-
     {
-
         if (result.Error == null)
-
         {
-
-            string name = "" + result.ResultDictionary["first_name"];
-
-            FB_userName.text = name;
-
-
-
-            Debug.Log("" + name);
-
+            FB_userName.text = "" + result.ResultDictionary["first_name"];
+            multiCallLogs(FB_userName.text);
         }
-
         else
-
-        {
-
-            Debug.Log(result.Error);
-
-        }
-
+            multiCallLogs(result.Error);
     }
 
 
 
     void DisplayProfilePic(IGraphResult result)
-
     {
-
         if (result.Texture != null)
-
         {
-
             Debug.Log("Profile Pic");
-
             FB_useerDp.sprite = Sprite.Create(result.Texture, new Rect(0, 0, 128, 128), new Vector2());
-
         }
-
         else
-
-        {
-
-            Debug.Log(result.Error);
-
-        }
-
+            multiCallLogs(result.Error);
     }
 
-    public static void SpentCoins(int coins, string item)
-
+    //shared.
+    public void FacebookShare()
     {
-
-        // setup parameters
-
-        var param = new Dictionary<string, object>();
-
-        param[AppEventParameterName.ContentID] = item;
-
-        // log event
-
-        FB.LogAppEvent(AppEventName.SpentCredits, (float)coins, param);
-
+        FB.ShareLink(new System.Uri("https://play.google.com/store/apps/details?id=com.AguirreJulian.BadPc"), "Check it out!",
+            "Nice Game!", new System.Uri("https://imgur.com/a/1sANcUn"));
     }
-    string respuesta;
-    public void Shared()
-    {
-        
-        Uri uri = new Uri("https://www.youtube.com/watch?v=6oWG2gjyVSY");
-        Uri uri2 = new Uri("https://imgur.com/a/1sANcUn");
-        FB.ShareLink(uri,"SOY TITULO","SOY DESCRIPCION", uri2,callback: RespuestaShared);
-        
-    }
+    //invite.
     public void FacebookGameRequest()
     {
         FB.AppRequest("Hey! Come and play this awesome game!", title: "BAD PC");
     }
+
     private void RespuestaShared(IShareResult x)
     {
         respuesta = "Shared ";
@@ -424,6 +196,7 @@ public class FBMnanager : MonoBehaviour
         respuesta = "APIGRAPH ";
         JLogger.SendLog(respuesta + x);
     }
+
 
     public void FacebookApiGet()
     {
@@ -437,6 +210,7 @@ public class FBMnanager : MonoBehaviour
     {
         FacebookApi(HttpMethod.DELETE);
     }
+    //Graph save. Load. Delete.
     public void FacebookApi(HttpMethod method)
     {
         WWWForm form = new WWWForm();
@@ -445,13 +219,13 @@ public class FBMnanager : MonoBehaviour
         a.Add("score", gold.ToString());
         FB.API("score", method, callback: RespuestaGR, a);
     }
-
+    //appEvent. si es log pero es appEvent.
     public void FBLog(string text)
     {
         Dictionary<string, object> a = null;
         FB.LogAppEvent("FBLoger=> " + text, 1, a);
     }
-
+    //share
     public void ShareProgress()
     {
         FB.AppRequest("I Just got " + DataManager.Get().MaxTime.ToString() + " Time! Can you beat it?", OGActionType.SEND, null, null,
@@ -461,5 +235,25 @@ public class FBMnanager : MonoBehaviour
     {
         respuesta = "RR: ";
         JLogger.SendLog(respuesta + x);
+    }
+    
+    public void GetAppLink()
+    {
+        FBLog("se obtuvo el link");
+        FB.GetAppLink(DeepLinkCallback);
+    }
+    void DeepLinkCallback(IAppLinkResult result)
+    {
+        if (!String.IsNullOrEmpty(result.Url))
+        {
+            var index = (new Uri(result.Url)).Query.IndexOf("request_ids");
+            if (index != -1)
+            {
+                url = result.Url;
+                // ...have the user interact with the friend who sent the request,
+                // perhaps by showing them the gift they were given, taking them
+                // to their turn in the game with that friend, etc.
+            }
+        }
     }
 }
