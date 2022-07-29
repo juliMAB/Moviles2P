@@ -8,7 +8,7 @@ public class PlayGames : MonoBehaviourSingleton<PlayGames>
 {
     private static string leaderboardID = GPGSIds.leaderboard_score_table;
     private static string achievementID = GPGSIds.achievement_abrir_el_juego;
-    private static PlayGamesPlatform platform;
+    //private static PlayGamesPlatform platform;
 
     void Start()
     {
@@ -18,13 +18,13 @@ public class PlayGames : MonoBehaviourSingleton<PlayGames>
     {
         
         {
-            if (platform == null)
-            {
-                PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
-                PlayGamesPlatform.InitializeInstance(config);
-                PlayGamesPlatform.DebugLogEnabled = true;
-                platform = PlayGamesPlatform.Activate();
-            }
+           //if (platform == null)
+           //{
+           //    PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
+           //    PlayGamesPlatform.InitializeInstance(config);
+           //    PlayGamesPlatform.DebugLogEnabled = true;
+           //    platform = PlayGamesPlatform.Activate();
+           //}
 
             Social.Active.localUser.Authenticate(success =>
             {
@@ -56,7 +56,7 @@ public class PlayGames : MonoBehaviourSingleton<PlayGames>
     {
         if (Social.Active.localUser.authenticated)
         {
-            platform.ShowLeaderboardUI();
+            //platform.ShowLeaderboardUI();
         }
     }
 
@@ -64,7 +64,7 @@ public class PlayGames : MonoBehaviourSingleton<PlayGames>
     {
         if (Social.Active.localUser.authenticated)
         {
-            platform.ShowAchievementsUI();
+            //platform.ShowAchievementsUI();
         }
     }
 

@@ -10,10 +10,10 @@ public class PlayGamesScript : MonoBehaviourSingleton<PlayGamesScript>
     {
         try
         {
-            PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder()
-            .RequestServerAuthCode(false).Build();
-            PlayGamesPlatform.InitializeInstance(config);
-            PlayGamesPlatform.Activate();
+            //PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder()
+            //.RequestServerAuthCode(false).Build();
+            //PlayGamesPlatform.InitializeInstance(config);
+            //PlayGamesPlatform.Activate();
             SingnInUserWithPlayGames();
             SingIn();
         }
@@ -37,18 +37,18 @@ public class PlayGamesScript : MonoBehaviourSingleton<PlayGamesScript>
     }
     void SingnInUserWithPlayGames()
     {
-        PlayGamesPlatform.Instance.Authenticate(SignInInteractivity.CanPromptOnce, (success) =>
-        {
-            switch (success)
-            {
-                case SignInStatus.Success:
-                    Debug.Log("signed in player using play games successfully");
-                    break;
-                default:
-                    Debug.Log("Signin not successfull: " + success);
-                    break;
-            }
-        });
+       //PlayGamesPlatform.Instance.Authenticate(SignInInteractivity.CanPromptOnce, (success) =>
+       //{
+       //    switch (success)
+       //    {
+       //        case SignInStatus.Success:
+       //            Debug.Log("signed in player using play games successfully");
+       //            break;
+       //        default:
+       //            Debug.Log("Signin not successfull: " + success);
+       //            break;
+       //    }
+       //});
     }
     public static void ShowAchievementsUI()
     {
